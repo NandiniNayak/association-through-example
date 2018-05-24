@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<!-- since student has many subjects -->
+<!-- only if a student id was passed and a request was made to show all the subjects
+taken by the student run the following code -->
+
+<% @student.subjects.each do |subject| %>
+      <!-- also since student has teachers through subject -->
+    <li><%= subject.name %> taught by <strong><%= subject.teacher.name %></strong> </li>
+<% end%>
+
+
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Students</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.name %></td>
+        <!-- pass the student id to the subject controller new method as a param -->
+        <!-- this indicates which student added what subject -->
+        <td><%= link_to 'Add Subject',new_subject_path(:student_id => student.id) %></td>
+        <!-- pass student id to subjects show controller to identify the student in subjects controller show method -->
+        <!-- this is a bad design, dont pass a student id, when a subject id is expected in show methods -->
+            <!-- <td><%= link_to 'Show Subjects Opted', subject_path(student)%></td> -->
+        <td><%= link_to 'Show Subjects Opted', student_path(student)%></td>
+        <td><%= link_to 'Show', student %></td>
+        <td><%= link_to 'Edit', edit_student_path(student) %></td>
+        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Student', new_student_path %>
